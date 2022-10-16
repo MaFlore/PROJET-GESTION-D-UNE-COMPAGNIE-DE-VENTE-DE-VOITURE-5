@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block gestion_page %}Admins
+{% endblock %}
+{% block page_courante %}
+{% endblock %}
+
+{% block contenu %}
+
+<body class="g-sidenav-show  bg-gray-200">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                  <h6 class="text-white text-capitalize ps-3">Listes des admins</h6>
+                  
+                </div>
+              </div>
+              <div >
+                  <a href="{{url('ajouterAdmin')}}" style="float: left;"><button class="btn btn-success m-3">Ajouter un admin</button></a>
+
+              </div>
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ordre</th> 
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prenom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telephone</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom d'utilisateur</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+                        {% for admin in admins %}
+                          <tr>
+                            <td class="align-middle text-center">{{loop.index}}</td>
+                            <td class="align-middle text-center">{{admin.nom}}</td>
+                            <td class="align-middle text-center">{{admin.prenom}}</td>
+                            <td class="align-middle text-center">{{admin.telephone}}</td>
+                            <td class="align-middle text-center">{{admin.nomUtilisateur}}</td>
+                            <td class="align-middle text-center">
+                              <a href="{{url('afficherAdmin',{'id':admin.id })}}" class="btn btn-info" data-toggle="tooltip" style="padding: 10;" data-original-title="Edit user">Détails</a>
+                              <a href="{{url('modifierAdmin',{'id':admin.id })}}" class="btn btn-warning" data-toggle="tooltip" style="padding: 10;" data-original-title="Edit user">Modifier</a>
+                              <a href="{{url('suppressionAdmin',{'id':admin.id })}}" class="btn btn-danger" data-toggle="tooltip" style="padding: 10;" data-original-title="Edit user" 
+                              onclick="return confirm('     Cette action est irréversible !\n Etes vous sûr de supprimer ce admin ?');">
+                              Supprimer</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      
+          </div>
+</body>
+{% endblock %}
+
+
